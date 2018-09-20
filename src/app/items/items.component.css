@@ -1,0 +1,56 @@
+mat-card.items-card {
+  height: 318px;
+  width: 270px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.items-card__footer,
+.items-card__content {
+  padding: 20px 20px 0 20px;
+  margin: 0;
+}
+.items-card__content {
+  height: 59px;
+}
+.items-card__image {
+  width: 270px;
+  height: 180px;
+  background: url('./../../assets/img1.png');
+  background-position: 30% 95%;
+  -webkit-background-size: 170%;
+  background-size: 170%;
+}
+.items-card__image-mask {
+  position: absolute;
+  width: 270px;
+  height: 180px;
+}
+.mat-card.items-card:hover  .items-card__image-mask {
+  background-color: rgba(28,184,255, 0.7);
+}
+.items-card__image-sign {
+  padding: 55% 0px 18px 24px;
+  color: #FFFFFF;
+  display: inline-block;
+}
+.items-card__footer-category {
+  color: #A6A9AF;
+  float: left;
+}
+.items-card__footer-price {
+  float: right;
+}
+.items-montserrat {
+  color: #33363E;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-size: 16px;
+  line-height: 22px;
+}
+.items-raleway {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  line-height: 22px;
+}

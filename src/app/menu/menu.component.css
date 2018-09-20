@@ -1,0 +1,52 @@
+.menu-select__title {
+  height: 13px;
+  width: 43px;
+  color: #33363E;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 0;
+  padding-bottom: 30px;
+}
+.menu-select__select {
+  height: 40px;
+  width: 240px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+  margin-bottom: 1em;
+}
+.menu-select__select:after {
+  content: "\f107";
+  padding: 12px 8px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  z-index: 1;
+  text-align: center;
+  width: 10%;
+  height: 100%;
+  pointer-events: none;
+}
+#city {
+  height: 40px;
+  width: 100%;
+  padding: 5px 15px;
+  color: #616263;
+  border: 1px solid #e3e3e3;
+  outline: none;
+  font-size: 16px;
+  -webkit-appearance: none;
+  /* for webkit browsers */
+  -moz-appearance: none;
+  /* for firefox */
+  appearance: none;
+}
+option {
+  height: 11px;
+  width: 52px;
+  color: #4C505B;
+  font-family: 'Raleway', sans-serif;
+  font-size: 15px;
+  line-height: 0;
+}
