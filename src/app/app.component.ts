@@ -1,4 +1,4 @@
-import { Component, OnChanges, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -7,17 +7,9 @@ import { Component, OnChanges, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'test-app';
-  public innerWidth: any;
-
   constructor() {
 
   }
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth)
 
-  }
 
 }

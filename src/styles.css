@@ -1,3 +1,29 @@
+@import "~nouislider/distribute/nouislider.min.css";
 @font-face {
   src: url('https://fonts.googleapis.com/css?family=Montserrat|Raleway:500,500');
-}/* You can add global styles to this file, and also import other style files */
+}
+
+.noUi-horizontal {
+  height: 4px;
+
+}
+.noUi-connect {
+  background: #1CB8FF;
+}
+.noUi-horizontal .noUi-handle {
+  border-radius: 50%;
+  border: 1px solid #1CB8FF;
+  width: 16px;
+  height: 16px;
+}
+.noUi-handle:hover {
+  background-color: #1CB8FF;
+}
+.noUi-handle::before,
+.noUi-handle::after  {
+  display: none;
+}
+
+body {
+  height: 100%;
+}

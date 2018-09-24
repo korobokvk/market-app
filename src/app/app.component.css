@@ -1,0 +1,21 @@
+.main__wrapper {
+  background-color: #DEDFE0;
+  height: 100%;
+
+}
+.main__bg {
+  /*margin: 190px 0 190px 0;*/
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+}
+.main-menu__wrapper,
+.main-items__wrapper {
+  background-color: #fff;
+  height: 100%;
+
+}
+.main-items__wrapper {
+
+}

@@ -1,13 +1,15 @@
-<mat-card class="items-card">
-  <div class="items-card__image">
-    <div class="items-card__image-mask"></div>
-   <span class="items-card__image-sign items-raleway">{{city}}</span>
-  </div>
-  <mat-card-content class="items-card__content items-montserrat">
-    {{sign}}
-  </mat-card-content>
-  <mat-card-footer class="items-card__footer">
-    <span class="items-card__footer-category items-raleway">{{category}}</span>
-    <span class="items-card__footer-price items-montserrat">{{price}}</span>
-  </mat-card-footer>
-</mat-card>
+<div class="item-wrapper">
+  <mat-card class="items-card">
+    <div class="items-card__image">
+      <div class="items-card__image-mask"></div>
+      <span class="items-card__image-sign items-raleway">{{city}}</span>
+    </div>
+    <mat-card-content class="items-card__content items-montserrat">
+      {{sign}}
+    </mat-card-content>
+    <mat-card-footer class="items-card__footer">
+      <span class="items-card__footer-category items-raleway">{{category}}</span>
+      <span class="items-card__footer-price items-montserrat">{{price}}</span>
+    </mat-card-footer>
+  </mat-card>
+</div>
