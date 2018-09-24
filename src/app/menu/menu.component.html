@@ -15,9 +15,9 @@
           </div>
 
           <div class="menu-select__title" >CATEGORIES</div>
-          <label (click)="$event.stopPropagation()" class="menu-categories container" formArrayName="category"
+          <label (click)="$event.stopPropagation()" class="menu-categories container menu-select__title" formArrayName="category"
                  *ngFor="let categoryes of myForm.controls.category.controls; let i = index">
-            <input  type="checkbox"  [formControlName]="i">{{category[i].name}}
+            <input  type="checkbox"  [formControlName]="i"><span class="checkbox_label">{{category[i].name}}</span>
             <span class="menu-categories__checkmark checkmark"></span>
           </label>
 
@@ -45,7 +45,7 @@
       <div class="menu-select__title" >CATEGORIES</div>
       <label  class="menu-categories container" formArrayName="category"
               *ngFor="let categoryes of myForm.controls.category.controls; let i = index">
-        <input type="checkbox"  [formControlName]="i">{{category[i].name}}
+        <input type="checkbox"  [formControlName]="i"><span class="checkbox_label">{{category[i].name}}</span>
         <span class="menu-categories__checkmark checkmark"></span>
       </label>
       <div class="menu-select__title">PRICE</div>
