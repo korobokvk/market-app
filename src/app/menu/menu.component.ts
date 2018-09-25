@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import {FormGroup, FormControl, FormArray, FormBuilder} from '@angular/forms';
-
+import { DataService } from '../services/data.service';
+import * as _ from 'lodash';
 export interface Cities {
   value: string;
   viewValue: string;
@@ -11,26 +12,23 @@ export interface Cities {
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  private filtersDataArray
   public sliderConfigure: any = {
     connect: true,
     step: 1,
-    range: {
-      min: 10,
-      max: 80
-    }
+    range: null
   };
   public category: Array<object>;
   public innerWidth: number;
-
   private myForm: FormGroup;
   private cities: Cities[];
-
-  constructor(private fb: FormBuilder) {
-    this.cities = [
-      {value: 'london', viewValue: 'London'},
-      {value: 'odessa', viewValue: 'Odessa'}
-    ];
-    this.category = [{id: 100, name: 'Arch'}, {id: 200, name: 'Arch'}, {id: 300, name: 'Arch'}];
+  constructor(private fb: FormBuilder, private dataService: DataService) {
+    this.cities = [...this.dataService.getCityFilter()];
+    this.category = [...this.dataService.getCategoryFilter()];
+    this.sliderConfigure.range = {
+      min: this.dataService.getPriceRange()[0],
+      max: this.dataService.getPriceRange()[1]
+    };
   }
   ngOnInit() {
     this.initForms();
@@ -46,17 +44,17 @@ export class MenuComponent implements OnInit {
     this.myForm = this.fb.group({
       city: new FormControl(null),
       category: new FormArray(controls),
-      range: new FormControl([5, 40])
+      price: new FormControl([this.sliderConfigure.range.min, this.sliderConfigure.range.max])
     });
     this.myForm.controls['city'].setValue(this.cities[0].value, {onlySelf: true});
   }
 
   submit() {
-    const selectedOrderIds = this.myForm.value.category
+    this.myForm.value.category = this.myForm.value.category
       .map((v, i) => v ? this.category[i]['id'] : null)
       .filter(v => v !== null);
 
-    console.log(selectedOrderIds);
+    this.dataService.getItemsData(this.myForm.value);
   }
 
 

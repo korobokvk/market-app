@@ -9,21 +9,17 @@ import { DataService } from '../services/data.service';
   providers: [DataService]
 })
 export class ItemsComponent implements OnInit {
+  private dataArray: Array<any>;
 
-  private city: string;
-  private category: string;
-  private sign: string;
-  private price: string;
-
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+    this.dataService.getItemsData().subscribe(data => {
+      this.dataArray = [...data];
+    }, error => console.error(error));
+  }
 
 
   ngOnInit() {
 
-    this.city = 'London';
-    this.category = 'Architecture';
-    this.sign = `Affiliate Marketing - A Beginner's Guide to Earning Online`;
-    this.price = '$150';
   }
 
 }

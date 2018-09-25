@@ -1,6 +1,7 @@
 .item-wrapper {
   padding: 25px 25px 25px 25px;
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
   justify-content: flex-start;
@@ -8,7 +9,7 @@
 .items-card {
   height: 318px;
   width: 270px;
-  margin: 0 28px;
+  margin: 25px 28px;
   padding: 0;
   cursor: pointer;
 }

@@ -5,6 +5,12 @@
 .menu-form__wrapper {
   width: 240px;
 }
+.made-my-absolute {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  background-color: #ffff;
+}
 .menu-select__title {
   height: 13px;
   width: 43px;
@@ -134,4 +140,27 @@ option {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.prices {
+  padding-right: 10px;
+  display: inline-block;
+  height: 16px;
+  width: 120px;
+  color: #33363E;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 0;
+}
+.submited-button {
+  background-color: #1CB8FF;
+  color: white;
+  width: 100px;
+  height: 35px;
+
+}
+.menu-categories:last-child {
+  margin-bottom: 28px;
+}
+nouislider {
+  padding-bottom: 28px;
 }

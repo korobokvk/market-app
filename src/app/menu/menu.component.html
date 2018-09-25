@@ -1,11 +1,10 @@
 <div class="menu-component">
-
   <section *ngIf="innerWidth <= 640">
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <div class="menu-form__wrapper">
+      <div class="menu-form__wrapper" [ngClass]="{'made-my-absolute': innerWidth <= 640}">
         <form [formGroup]="myForm" (ngSubmit)="submit()">
           <div class="menu-select__title">CITY</div>
           <div class="menu-select__select">
@@ -23,7 +22,6 @@
 
           <div class="menu-select__title">PRICE</div>
           <nouislider (click)="$event.stopPropagation()" #slider formControlName="range" [config]="sliderConfigure" [formControl]='myForm.controls.range'></nouislider>
-
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -32,10 +30,11 @@
 
 
 
-  <div class="menu-form__wrapper" *ngIf="innerWidth > 640">
-
+  <div class="menu-form__wrapper" *ngIf="innerWidth >= 640">
     <form [formGroup]="myForm" (ngSubmit)="submit()">
       <div class="menu-select__title">CITY</div>
+      {{appResize}}
+
       <div class="menu-select__select">
         <select name="city" id="city" formControlName="city">
           <option  *ngFor="let city of cities" [ngValue]="city.value">{{city.viewValue}}</option>
@@ -50,9 +49,11 @@
       </label>
       <div class="menu-select__title">PRICE</div>
 
-      <nouislider #slider formControlName="range" [config]="sliderConfigure" [formControl]='myForm.controls.range'></nouislider>
+      <nouislider #slider formControlName="price" [config]="sliderConfigure" [formControl]='myForm.controls.price'></nouislider>
 
-      <button type="submit">Submit</button>
+      <span class="prices">${{myForm.value.price[0]}} - ${{myForm.value.price[1]}}  </span>
+
+      <button mat-flat-button class="submited-button" type="submit">FILTER</button>
     </form>
   </div>
 

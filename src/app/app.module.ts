@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, TemplateRef, ViewContainerRef } from '@angular/core';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 import { MenuComponent } from './menu/menu.component';
-import { MatCardModule, MatMenuModule, MatIconModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatMenuModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NouisliderModule } from 'ng2-nouislider';
 
@@ -30,7 +30,8 @@ import { NouisliderModule } from 'ng2-nouislider';
     MatSelectModule,
     BrowserAnimationsModule,
     NouisliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

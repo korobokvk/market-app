@@ -1,5 +1,5 @@
 <div class="main__wrapper">
-  <div class="main__bg">
+  <div class="main__bg" [style.position]="innerWidth < 640 ? 'relative':'flex'">
     <div class="main-menu__wrapper">
       <app-menu></app-menu>
     </div>
