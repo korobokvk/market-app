@@ -1,25 +1,40 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy} from '@angular/core';
 import { DataService } from '../services/data.service';
-// import { Observable } from 'rxjs/index';
+import { FilterService } from '../services/filter.service';
+import { Subject } from 'rxjs/index';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css'],
-  providers: [DataService]
+  providers: [DataService, FilterService]
 })
-export class ItemsComponent implements OnInit {
+export class ItemsComponent implements OnDestroy {
+  private destroy$ = new Subject<void>();
+
   private dataArray: Array<any>;
 
-  constructor(private dataService: DataService) {
+
+  constructor(private dataService: DataService, private filterService: FilterService) {
+
     this.dataService.getItemsData().subscribe(data => {
-      this.dataArray = [...data];
+      console.log(data);
+      if (Array.isArray(data)) {
+        this.dataArray = [...data];
+      }
     }, error => console.error(error));
+
+    this.filterService.data$.asObservable().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((data) => {
+      if (Array.isArray(data)) {
+        this.dataArray = [...data];
+      }    });
   }
 
-
-  ngOnInit() {
-
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-
 }

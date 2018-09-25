@@ -4,6 +4,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { FilterService } from "./services/filter.service"
 import { ItemsComponent } from './items/items.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatCardModule, MatMenuModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatButtonModule } from '@angular/material';

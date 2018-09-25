@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import {Observable} from 'rxjs';
-import { of } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,55 +32,18 @@ export class DataService {
 
   public structuredData;
 
-
   constructor() {
     this.structuredData = [];
   }
-  public getItemsData(filters?): Observable<any[]> {
+  public getItemsData() {
     this.structuredData = _.cloneDeep(this.Data);
-    console.log(this.structuredData)
     _.forEach(this.structuredData, data => {
-     data = this.buildDataObject(data, 'city', this.City);
-     data = this.buildDataObject(data, 'category', this.Category);
-     delete data.id;
+      data = this.buildDataObject(data, 'city', this.City);
+      data = this.buildDataObject(data, 'category', this.Category);
     });
-
-    if (filters) {
-      const index = [];
-      const filterCategoryBool = [];
-
-      for (const key in filters) {
-        if (filters.hasOwnProperty(key)) {
-          if (Array.isArray(_.get(filters, key)) && key !== 'price') {
-            _.forEach(_.get(filters, key), data => {
-              filterCategoryBool.push(_.findIndex(this.structuredData, (val) => {
-                console.log(val, key)
-                return val[key] === data;
-              }));
-            });
-          }
-          index.push(_.findIndex(this.structuredData, (o) => {
-            if (key === 'price') {
-              const bool = _.reduce( _.get(filters, key), (result, value, keys) => {
-                  return _.get(o, key) >= result && _.get(o, key) <= value;
-              });
-              return bool;
-            } else {
-              return _.get(o, key) === _.get(filters, key);
-            }
-          }));
-        }
-      }
-      _.findIndex(this.structuredData, (predicate) => {
-        console.log(index, filterCategoryBool)
-        if (index.length > 0 && filterCategoryBool.length > 0) {
-          const diff = _.difference(index, filterCategoryBool);
-          console.log(diff);
-        }
-
-      })
-    }
-    return of(this.structuredData);
+    return new Observable((observer) => {
+      observer.next(this.structuredData);
+    });
   }
   public getCityFilter() {
     const cities = [];

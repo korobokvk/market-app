@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import {FormGroup, FormControl, FormArray, FormBuilder} from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder} from '@angular/forms';
 import { DataService } from '../services/data.service';
-import * as _ from 'lodash';
+import { FilterService } from '../services/filter.service';
 export interface Cities {
   value: string;
   viewValue: string;
@@ -9,7 +9,8 @@ export interface Cities {
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  providers: [FilterService, DataService]
 })
 export class MenuComponent implements OnInit {
   private filtersDataArray
@@ -22,7 +23,7 @@ export class MenuComponent implements OnInit {
   public innerWidth: number;
   private myForm: FormGroup;
   private cities: Cities[];
-  constructor(private fb: FormBuilder, private dataService: DataService) {
+  constructor(private fb: FormBuilder, private dataService: DataService, private filterService: FilterService) {
     this.cities = [...this.dataService.getCityFilter()];
     this.category = [...this.dataService.getCategoryFilter()];
     this.sliderConfigure.range = {
@@ -53,8 +54,7 @@ export class MenuComponent implements OnInit {
     this.myForm.value.category = this.myForm.value.category
       .map((v, i) => v ? this.category[i]['id'] : null)
       .filter(v => v !== null);
-
-    this.dataService.getItemsData(this.myForm.value);
+    this.filterService.getFilteredItems(this.myForm.value);
   }
 
 
