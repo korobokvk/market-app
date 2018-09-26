@@ -15,12 +15,11 @@ export class FilterService {
 
   public getFilteredItems(filters) {
     return this.dataService.getItemsData().subscribe(data => {
-      this.data$.next(this.filterer(data, filters));
+      this.filterer(data, filters);
     });
   }
-
   private filterer(data, filter) {
-    return data.filter(item => {
+    const result = data.filter(item => {
       if (item.city !== filter.city) {
         return false;
       }
@@ -30,6 +29,7 @@ export class FilterService {
         filter.price[1] >= item.price
       );
     });
+    this.data$.next(result);
   }
 
 }

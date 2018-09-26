@@ -12,14 +12,12 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ItemsComponent implements OnDestroy {
   private destroy$ = new Subject<void>();
-
   private dataArray: Array<any>;
 
 
   constructor(private dataService: DataService, private filterService: FilterService) {
 
     this.dataService.getItemsData().subscribe(data => {
-      console.log(data);
       if (Array.isArray(data)) {
         this.dataArray = [...data];
       }
@@ -30,7 +28,8 @@ export class ItemsComponent implements OnDestroy {
     ).subscribe((data) => {
       if (Array.isArray(data)) {
         this.dataArray = [...data];
-      }    });
+      }
+    });
   }
 
   public ngOnDestroy(): void {
