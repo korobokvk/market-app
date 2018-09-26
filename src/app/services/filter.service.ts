@@ -14,8 +14,9 @@ export class FilterService {
   }
 
   public getFilteredItems(filters) {
+    this.data$.next(filters);
     return this.dataService.getItemsData().subscribe(data => {
-      this.filterer(data, filters);
+     this.filterer(data, filters);
     });
   }
   private filterer(data, filter) {

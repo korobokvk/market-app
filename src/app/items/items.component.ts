@@ -8,7 +8,6 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css'],
-  providers: [DataService, FilterService]
 })
 export class ItemsComponent implements OnDestroy {
   private destroy$ = new Subject<void>();

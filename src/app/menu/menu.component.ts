@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, FormArray, FormBuilder} from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { FilterService } from '../services/filter.service';
+
 export interface Cities {
   value: string;
   viewValue: string;
@@ -10,10 +11,8 @@ export interface Cities {
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  providers: [FilterService, DataService]
 })
 export class MenuComponent implements OnInit {
-  private filtersDataArray
   public sliderConfigure: any = {
     connect: true,
     step: 1,
