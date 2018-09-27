@@ -25,7 +25,7 @@ export class FilterService {
         return false;
       }
       return (
-        filter.category.includes(item.category) ||
+        filter.category.includes(item.category) &&
         filter.price[0] <= item.price &&
         filter.price[1] >= item.price
       );

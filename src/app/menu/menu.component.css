@@ -8,8 +8,14 @@
 .made-my-absolute {
   position: absolute;
   z-index: 99;
-  top: 0;
+  top: 15px;
+  height: 650px;
+  width: 255px;
   background-color: #ffff;
+}
+.hidden-menu {
+  height: 100%;
+  width: 240px;
 }
 .menu-select__title {
   height: 13px;
