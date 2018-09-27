@@ -20,6 +20,7 @@ export class MenuComponent implements OnInit {
     range: null
   };
   public category: Array<object>;
+  public choosenCategory;
   public innerWidth: number;
   private myForm: FormGroup;
   private cities: Cities[];
@@ -46,8 +47,6 @@ export class MenuComponent implements OnInit {
     this.innerWidth = window.innerWidth;
   }
   initForms(...filtersVal) {
-    console.log(filtersVal)
-
     const controls = this.category.map(c => new FormControl(false));
     this.myForm = this.fb.group({
       city: new FormControl(null),
@@ -57,8 +56,8 @@ export class MenuComponent implements OnInit {
     this.myForm.controls['city'].setValue('Select City', {onlySelf: true});
 
     if (filtersVal.length > 0) {
-      this.sendFilters(void 0, filtersVal[0]);
-      this.myForm.controls['city'].setValue(_.get(filtersVal[0], 'city'), {onlySelf: true});
+      this.submit(filtersVal[0]);
+      this.myForm.controls['city'].setValue(_.get(filtersVal[0], 'city' ) || 'Select City', {onlySelf: true});
       this.myForm.controls['price'].setValue(_.get(filtersVal[0], 'price'), {onlySelf: true});
       if (_.includes(_.get(filtersVal[0], 'category'), true)) {
         this.myForm.controls['category'].setValue(_.get(filtersVal[0], 'category'), {onlySelf: true});
@@ -66,13 +65,14 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  submit() {
+  submit(fromStorage?) {
     const val = this.myForm.value.category
       .map((v, i) => v ? this.category[i]['id'] : null)
       .filter(v => v !== null);
-    if (this.myForm.value.city === 'Select City') {
-      alert('Please choose city from the list');
-      localStorage.removeItem('filtersValue')
+
+      if (fromStorage) {
+      localStorage.setItem('filtersValue', JSON.stringify(this.myForm.value));
+      this.sendFilters(val, fromStorage);
     } else {
       localStorage.setItem('filtersValue', JSON.stringify(this.myForm.value));
       this.sendFilters(val);

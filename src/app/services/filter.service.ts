@@ -21,14 +21,22 @@ export class FilterService {
   }
   private filterer(data, filter) {
     const result = data.filter(item => {
-      if (item.city !== filter.city) {
+      if (filter.city !== 'Select City' && filter.city !== null && item.city !== filter.city) {
         return false;
       }
-      return (
-        filter.category.includes(item.category) &&
-        filter.price[0] <= item.price &&
-        filter.price[1] >= item.price
-      );
+      if (filter.category.length > 0) {
+        return (
+          filter.category.includes(item.category) &&
+          filter.price[0] <= item.price &&
+          filter.price[1] >= item.price
+        );
+      } else {
+        return (
+          filter.category.includes(item.category) ||
+          filter.price[0] <= item.price ||
+          filter.price[1] >= item.price
+        );
+      }
     });
     this.data$.next(result);
   }
